@@ -9,7 +9,7 @@ export default function ProfilePage() {
 			<header className='w-full p-4 bg-gray-900/60 sticky top-0 z-50 shadow-md'>
 				<div className='max-w-6xl mx-auto flex justify-between items-center'>
 					<h1 className='text-xl sm:text-2xl font-bold text-white'>
-						CasualCrave Profiles
+						CasualCrave.au
 					</h1>
 					<nav className='space-x-4 hidden sm:flex'>
 						<a href='/' className='hover:text-purple-400 transition'>

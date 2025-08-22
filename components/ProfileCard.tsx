@@ -7,13 +7,13 @@ export default function ProfileCard() {
   const [flipped, setFlipped] = useState(true);
 
   const profile = {
-    name: "Maya",
+    name: "Vivi",
     age: 22,
     bio: "Loves coffee, sunsets, and spontaneous adventures!",
-    frontImage: "/images/maya-front.jpg",
-    backImage: "/images/maya-back.jpg",
-    telegram: "https://t.me/alex_manager",
-    whatsapp: "https://wa.me/1234567890",
+    frontImage: "/images/viv.jpg",
+    backImage: "/images/viv2.jpg",
+    telegram: "https://t.me/JamesGonzalez_CC",
+    whatsapp: "https://wa.me/+61485978227",
     Mail:"casualcrave.au@gmail.com"
   };
 
