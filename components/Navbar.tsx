@@ -76,44 +76,7 @@ export default function Navbar({ onSearch }: { onSearch?: (query: string) => voi
             >
               {isDarkMode ? <FaSun size={20} /> : <FaMoon size={20} />}
             </button>
-            {session ? (
-              <div className="relative">
-                <button
-                  onClick={toggleDropdown}
-                  className="flex items-center space-x-2 text-[#FAFAFA] hover:text-[#FF4C61] transition-colors duration-200 focus:outline-none"
-                  style={{ fontFamily: 'Inter, sans-serif' }}
-                >
-                  <FaUserCircle size={24} />
-                  <span>{session.user.name}</span>
-                </button>
-                <AnimatePresence>
-                  {isDropdownOpen && (
-                    <motion.div
-                      className="absolute right-0 mt-2 w-48 bg-[#FAFAFA] text-[#2E2E2E] rounded-md shadow-lg py-2"
-                      initial={{ opacity: 0, y: -10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: -10 }}
-                      transition={{ duration: 0.2 }}
-                    >
-                      <a
-                        href="/profile"
-                        className="block px-4 py-2 hover:bg-[#FFD6C9] transition-colors duration-200"
-                        style={{ fontFamily: 'Inter, sans-serif' }}
-                      >
-                        Profile
-                      </a>
-                      <button
-                        onClick={() => signOut()}
-                        className="block w-full text-left px-4 py-2 hover:bg-[#FFD6C9] transition-colors duration-200"
-                        style={{ fontFamily: 'Inter, sans-serif' }}
-                      >
-                        <FaSignOutAlt className="inline mr-2" /> Sign Out
-                      </button>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
-            ) : (
+        
               <button
                 onClick={() => signIn()}
                 className="bg-[#FF4C61] text-[#FAFAFA] px-4 py-2 rounded-md hover:bg-[#FFD6C9] hover:text-[#1C1C3C] transition-colors duration-300 focus:outline-none"

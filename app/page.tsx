@@ -3,12 +3,11 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useSession, signOut } from "next-auth/react";
-import { motion, AnimatePresence } from "framer-motion";
 import { FaBars, FaTimes } from "react-icons/fa";
 
 export default function Home() {
 	const router = useRouter();
-	const { status, data: session, update } = useSession();
+	const { status, data: session } = useSession();
 	const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
 	const pages = [{ name: "Profiles", path: "/Profiles" }];
@@ -24,9 +23,7 @@ export default function Home() {
 		{ name: "Emily L.", rating: 5, text: "Great for casual or lasting bonds." },
 	];
 
-	const toggleMobileMenu = () => {
-		setIsMobileMenuOpen(!isMobileMenuOpen);
-	};
+	const toggleMobileMenu = () => setIsMobileMenuOpen(!isMobileMenuOpen);
 
 	useEffect(() => {
 		if (status === "unauthenticated") {
@@ -54,41 +51,37 @@ export default function Home() {
 
 			{/* HEADER */}
 			<header className='w-full p-4 bg-gray-900/50 sticky top-0 z-50 shadow-md'>
-				<motion.div<HTMLDivElement> className='flex justify-between items-center max-w-6xl mx-auto px-4'>
-					<motion.div<HTMLDivElement>
-						className='flex items-center space-x-4'
-						initial={{ x: -100, opacity: 0 }}
-						animate={{ x: 0, opacity: 1 }}
-						transition={{ duration: 0.8 }}
-					>
+				<div className='flex justify-between items-center max-w-6xl mx-auto px-4'>
+					{/* Logo/User */}
+					<div className='flex items-center space-x-4'>
 						<div className='w-10 h-10 rounded-full bg-gradient-to-r from-purple-400 to-pink-600 flex items-center justify-center cursor-pointer text-white font-bold'>
 							{session?.user?.name?.[0]?.toUpperCase() || "U"}
 						</div>
 						<span className='text-lg font-semibold text-white hidden sm:inline'>
 							{session?.user?.name || "User"}
 						</span>
-					</motion.div>
+					</div>
 
+					{/* Desktop Menu */}
 					<div className='hidden md:flex space-x-4'>
 						{pages.map((page) => (
-							<motion.button<HTMLButtonElement>
+							<button
 								key={page.name}
 								className='py-2 px-4 rounded-lg font-medium text-white transition-colors duration-300 bg-transparent hover:bg-purple-600/50'
-								whileHover={{ scale: 1.05 }}
 								onClick={() => router.push(page.path)}
 							>
 								{page.name}
-							</motion.button>
+							</button>
 						))}
-						<motion.button<HTMLButtonElement>
+						<button
 							className='py-2 px-4 rounded-lg font-medium text-white bg-transparent hover:bg-purple-600/50 transition-colors duration-300'
 							onClick={() => signOut()}
-							whileHover={{ scale: 1.05 }}
 						>
 							Sign Out
-						</motion.button>
+						</button>
 					</div>
 
+					{/* Mobile Menu Button */}
 					<div className='md:hidden'>
 						<button
 							onClick={toggleMobileMenu}
@@ -100,79 +93,56 @@ export default function Home() {
 							{isMobileMenuOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
 						</button>
 					</div>
-				</motion.div>{" "}
-				{/* ✅ fixed here */}
-				<AnimatePresence>
-					{isMobileMenuOpen && (
-						<motion.div<HTMLDivElement>
-							className='md:hidden bg-gray-900/80 mt-4 p-4 rounded-lg shadow-lg mx-4'
-							initial={{ opacity: 0, height: 0 }}
-							animate={{ opacity: 1, height: "auto" }}
-							exit={{ opacity: 0, height: 0 }}
-							transition={{ duration: 0.3 }}
-						>
-							{pages.map((page) => (
-								<motion.button<HTMLButtonElement>
-									key={page.name}
-									className='block w-full text-left py-3 text-white hover:text-purple-400 transition-colors duration-200 text-lg'
-									onClick={() => {
-										router.push(page.path);
-										toggleMobileMenu();
-									}}
-								>
-									{page.name}
-								</motion.button>
-							))}
-							<motion.button<HTMLButtonElement>
+				</div>
+
+				{/* Mobile Menu */}
+				{isMobileMenuOpen && (
+					<div className='md:hidden bg-gray-900/80 mt-4 p-4 rounded-lg shadow-lg mx-4'>
+						{pages.map((page) => (
+							<button
+								key={page.name}
 								className='block w-full text-left py-3 text-white hover:text-purple-400 transition-colors duration-200 text-lg'
 								onClick={() => {
-									signOut();
+									router.push(page.path);
 									toggleMobileMenu();
 								}}
 							>
-								Sign Out
-							</motion.button>
-						</motion.div>
-					)}
-				</AnimatePresence>
+								{page.name}
+							</button>
+						))}
+						<button
+							className='block w-full text-left py-3 text-white hover:text-purple-400 transition-colors duration-200 text-lg'
+							onClick={() => {
+								signOut();
+								toggleMobileMenu();
+							}}
+						>
+							Sign Out
+						</button>
+					</div>
+				)}
 			</header>
 
 			{/* Hero Section */}
 			<section className='flex-grow flex items-center justify-center text-center z-10 py-12 px-4'>
-				<motion.div<HTMLDivElement>
-					initial={{ opacity: 0, y: 50 }}
-					animate={{ opacity: 1, y: 0 }}
-					transition={{ duration: 0.8 }}
-				>
+				<div>
 					<h1 className='text-3xl sm:text-4xl font-bold mb-2 text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600'>
 						Welcome to Casual Crave
 					</h1>
 					<p className='text-lg sm:text-xl mb-8 text-gray-300'>
 						Secure, thrilling meetups for mature adults.
 					</p>
-				</motion.div>
+				</div>
 			</section>
 
 			{/* Achievements Section */}
 			<section id='achievements' className='py-12 px-4 bg-gray-900/50'>
 				<div className='max-w-6xl mx-auto text-center'>
-					<motion.h2<HTMLHeadingElement>
-						className='text-2xl sm:text-3xl font-bold mb-8 text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600'
-						initial={{ opacity: 0 }}
-						whileInView={{ opacity: 1 }}
-						transition={{ duration: 0.8 }}
-						viewport={{ once: true }}
-					>
+					<h2 className='text-2xl sm:text-3xl font-bold mb-8 text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600'>
 						Our Achievements
-					</motion.h2>
+					</h2>
 					<div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
-						<motion.div<HTMLDivElement>
-							className='p-6 bg-gray-800/50 rounded-xl shadow-lg'
-							initial={{ opacity: 0, y: 50 }}
-							whileInView={{ opacity: 1, y: 0 }}
-							transition={{ duration: 0.8 }}
-							viewport={{ once: true }}
-						>
+						<div className='p-6 bg-gray-800/50 rounded-xl shadow-lg'>
 							<h3 className='text-xl sm:text-2xl font-semibold mb-4 text-white'>
 								Years of Service
 							</h3>
@@ -182,14 +152,8 @@ export default function Home() {
 							<p className='text-gray-400 mt-2'>
 								Building trusted connections since 2020
 							</p>
-						</motion.div>
-						<motion.div<HTMLDivElement>
-							className='p-6 bg-gray-800/50 rounded-xl shadow-lg'
-							initial={{ opacity: 0, y: 50 }}
-							whileInView={{ opacity: 1, y: 0 }}
-							transition={{ delay: 0.2, duration: 0.8 }}
-							viewport={{ once: true }}
-						>
+						</div>
+						<div className='p-6 bg-gray-800/50 rounded-xl shadow-lg'>
 							<h3 className='text-xl sm:text-2xl font-semibold mb-4 text-white'>
 								Satisfied Meets
 							</h3>
@@ -197,7 +161,7 @@ export default function Home() {
 								50,000
 							</span>
 							<p className='text-gray-400 mt-2'>Facilitating safe encounters</p>
-						</motion.div>
+						</div>
 					</div>
 				</div>
 			</section>
@@ -205,30 +169,14 @@ export default function Home() {
 			{/* Testimonials */}
 			<section id='testimonials' className='py-12 px-4'>
 				<div className='max-w-6xl mx-auto text-center'>
-					<motion.h2<HTMLHeadingElement>
-						className='text-2xl sm:text-3xl font-bold mb-8 text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600'
-						initial={{ opacity: 0 }}
-						whileInView={{ opacity: 1 }}
-						transition={{ duration: 0.8 }}
-						viewport={{ once: true }}
-					>
+					<h2 className='text-2xl sm:text-3xl font-bold mb-8 text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600'>
 						What Our Users Say
-					</motion.h2>
-					<motion.div<HTMLDivElement>
-						className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4'
-						initial={{ opacity: 0 }}
-						whileInView={{ opacity: 1 }}
-						transition={{ duration: 0.8 }}
-						viewport={{ once: true }}
-					>
+					</h2>
+					<div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4'>
 						{testimonials.map((testimonial, index) => (
-							<motion.div<HTMLDivElement>
+							<div
 								key={index}
 								className='bg-gray-900/80 p-6 rounded-xl shadow-lg border border-purple-500/30'
-								initial={{ opacity: 0, x: 50 }}
-								whileInView={{ opacity: 1, x: 0 }}
-								transition={{ delay: index * 0.2, duration: 0.8 }}
-								viewport={{ once: true }}
 							>
 								<div className='flex mb-2 justify-center'>
 									{[...Array(5)].map((_, i) => (
@@ -252,41 +200,23 @@ export default function Home() {
 								<p className='text-sm font-semibold text-purple-400'>
 									{testimonial.name}
 								</p>
-							</motion.div>
+							</div>
 						))}
-					</motion.div>
+					</div>
 				</div>
 			</section>
 
 			{/* About Section */}
 			<section id='about' className='py-12 px-4 bg-gray-900/50'>
 				<div className='max-w-6xl mx-auto text-center'>
-					<motion.h2<HTMLHeadingElement>
-						className='text-2xl sm:text-3xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600'
-						initial={{ opacity: 0 }}
-						whileInView={{ opacity: 1 }}
-						transition={{ duration: 0.8 }}
-						viewport={{ once: true }}
-					>
+					<h2 className='text-2xl sm:text-3xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600'>
 						About Casual Crave
-					</motion.h2>
-					<motion.p<HTMLParagraphElement>
-						className='text-base sm:text-lg text-gray-300 mb-8 max-w-2xl mx-auto'
-						initial={{ opacity: 0, y: 20 }}
-						whileInView={{ opacity: 1, y: 0 }}
-						transition={{ duration: 0.8 }}
-						viewport={{ once: true }}
-					>
+					</h2>
+					<p className='text-base sm:text-lg text-gray-300 mb-8 max-w-2xl mx-auto'>
 						Casual Crave offers secure, thrilling meetups for mature adults with
 						verified profiles and privacy focus.
-					</motion.p>
-					<motion.div<HTMLDivElement>
-						className='grid grid-cols-1 md:grid-cols-2 gap-6'
-						initial={{ opacity: 0 }}
-						whileInView={{ opacity: 1 }}
-						transition={{ duration: 0.8 }}
-						viewport={{ once: true }}
-					>
+					</p>
+					<div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
 						<div className='p-6 bg-gray-800/50 rounded-xl shadow-lg'>
 							<h3 className='text-lg sm:text-xl font-semibold mb-2 text-white'>
 								Our Mission
@@ -303,7 +233,7 @@ export default function Home() {
 								Verified, discreet, and tailored for mature meetups.
 							</p>
 						</div>
-					</motion.div>
+					</div>
 				</div>
 			</section>
 		</main>
