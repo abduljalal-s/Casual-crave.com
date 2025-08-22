@@ -1,0 +1,74 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+
+    @keyframes twinkling {
+      0% { opacity: 0.5; }
+      50% { opacity: 0.8; }
+      100% { opacity: 0.5; }
+    }
+
+    /* Glow Effect for Buttons and Avatar */
+    .glow {
+      box-shadow: 0 0 15px rgba(192, 132, 252, 0.7), 0 0 30px rgba(192, 132, 252, 0.4);
+    }
+
+    /* Flash Animation for HeroSection */
+    @keyframes flash {
+      0% { opacity: 0; }
+      50% { opacity: 1; }
+      100% { opacity: 0.9; }
+    }
+
+    .animate-flash {
+      animation: flash 0.5s ease-in-out;
+    }
+
+    /* Gradient Animation */
+    @keyframes gradient-shift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .bg-gradient-animated {
+      background-size: 200% 200%;
+      animation: gradient-shift 10s ease infinite;
+    }
+
+    /* Levitate Animation */
+    @keyframes levitate {
+      0% { transform: translateY(0); }
+      50% { transform: translateY(-5px); }
+      100% { transform: translateY(0); }
+    }
+
+    .levitate {
+      animation: levitate 1.5s ease-in-out infinite;
+    }
+
+    /* Carousel Styling */
+    .carousel {
+      overflow: hidden;
+      position: relative;
+      width: 100%;
+    }
+
+    .carousel-inner {
+      display: flex;
+      animation: carousel-slide 20s infinite linear;
+    }
+
+    .carousel-item {
+      min-width: 33.33%;
+      margin: 0 10px;
+      flex-shrink: 0;
+    }
+
+    @keyframes carousel-slide {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-100%); }
+    }
