@@ -39,17 +39,6 @@
       animation: gradient-shift 10s ease infinite;
     }
 
-    /* Levitate Animation */
-    @keyframes levitate {
-      0% { transform: translateY(0); }
-      50% { transform: translateY(-5px); }
-      100% { transform: translateY(0); }
-    }
-
-    .levitate {
-      animation: levitate 1.5s ease-in-out infinite;
-    }
-
     /* Carousel Styling */
     .carousel {
       overflow: hidden;
