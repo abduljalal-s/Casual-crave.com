@@ -1,16 +1,19 @@
-"use client";
-
+import type { Metadata } from "next";
 import "./globals.css";
-import ClientNavBar from "@/components/ClientNavBar";
+
+export const metadata: Metadata = {
+  title: "CasualCrave",
+  description: "Your site description here",
+};
 
 export default function RootLayout({
-	children,
+  children,
 }: {
-	children: React.ReactNode;
+  children: React.ReactNode;
 }) {
-	return (
-		<html lang='en'>
-			<body>{children}</body>
-		</html>
-	);
+  return (
+    <html lang="en">
+      <body>{children}</body>
+    </html>
+  );
 }

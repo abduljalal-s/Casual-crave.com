@@ -1,5 +1,8 @@
-module.exports = {
-	async redirects() {
-		return [];
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+	experimental: {
+		outputFileTracingRoot: __dirname,
 	},
 };
+
+module.exports = nextConfig;

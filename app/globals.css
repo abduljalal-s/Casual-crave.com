@@ -3,8 +3,6 @@
 @tailwind utilities;
 
 
-
-
     @keyframes twinkling {
       0% { opacity: 0.5; }
       50% { opacity: 0.8; }
@@ -16,17 +14,7 @@
       box-shadow: 0 0 15px rgba(192, 132, 252, 0.7), 0 0 30px rgba(192, 132, 252, 0.4);
     }
 
-    /* Flash Animation for HeroSection */
-    @keyframes flash {
-      0% { opacity: 0; }
-      50% { opacity: 1; }
-      100% { opacity: 0.9; }
-    }
-
-    .animate-flash {
-      animation: flash 0.5s ease-in-out;
-    }
-
+   
     /* Gradient Animation */
     @keyframes gradient-shift {
       0% { background-position: 0% 50%; }
