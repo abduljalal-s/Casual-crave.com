@@ -1,19 +1,16 @@
-import type { Metadata } from "next";
-import "./globals.css";
-
-export const metadata: Metadata = {
-  title: "CasualCrave",
-  description: "Your site description here",
-};
+// app/layout.tsx
+import './globals.css'
 
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode;
+  children: React.ReactNode
 }) {
   return (
-    <html lang="en">
-      <body>{children}</body>
+    <html lang="en" suppressHydrationWarning>
+      <body className="bg-gray-50 text-gray-800">
+        {children}
+      </body>
     </html>
-  );
+  )
 }

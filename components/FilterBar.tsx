@@ -24,6 +24,7 @@ export default function FilterBar({ onFilterChange }: { onFilterChange: (filters
             onChange={(e) => setLocation(e.target.value)}
             className="w-full p-2 border border-[#1C1C3C] rounded-md"
           >
+          
             <option value="">All</option>
             <option value="New York">New York</option>
             <option value="Los Angeles">Los Angeles</option>

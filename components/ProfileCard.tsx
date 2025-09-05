@@ -10,13 +10,15 @@ export default function ProfileCard() {
     name: "Vivi",
     age: 22,
     bio: "Loves coffee, sunsets, and spontaneous adventures!",
-    frontImage: "/images/viv.jpg",
-    backImage: "/images/viv2.jpg",
-    telegram: "https://t.me/JamesGonzalez_CC",
+    frontImage: "/images/lexxie2.jpg",
+    backImage: "/images/lexxie.jpg",
+    telegram: "https://t.me/casualviv",
+    mngttelegram: "https://t.me/JamesGonzalez_CC",
     whatsapp: "https://wa.me/+61485978227",
-    Mail:"casualcrave.au@gmail.com"
+    Kik: "https://kik.me/casualviv",
+    Mail: "casualcrave.au@gmail.com"
   };
-
+  
   const handleFlip = () => {
     setFlipped(!flipped);
   };
@@ -24,22 +26,30 @@ export default function ProfileCard() {
   return (
     <div className="flex justify-center mt-12">
       <div
-        className="relative w-80 h-[480px] perspective-1000 cursor-pointer"
+        className="relative w-80 h-[480px] cursor-pointer"
+        style={{ perspective: 1000 }}
         onClick={handleFlip}
       >
         <div
-          className={`absolute inset-0 transition-transform duration-700 transform-style-3d ${
-            flipped ? "rotate-y-180" : ""
-          }`}
+          className={`absolute inset-0 transition-transform duration-700`}
+          style={{
+            transformStyle: "preserve-3d",
+            transform: flipped ? "rotateY(180deg)" : "none"
+          }}
         >
           {/* Front Side */}
-          <div className="absolute inset-0 backface-hidden rounded-xl overflow-hidden shadow-xl">
+          <div
+            className="absolute inset-0 rounded-xl overflow-hidden shadow-xl"
+            style={{
+              backfaceVisibility: "hidden"
+            }}
+          >
             <div className="relative h-64">
               <Image
                 src={profile.frontImage}
                 alt={`${profile.name} front`}
-                layout="fill"
-                objectFit="cover"
+                fill
+                style={{ objectFit: "cover" }}
                 className="rounded-t-xl"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
@@ -61,13 +71,19 @@ export default function ProfileCard() {
           </div>
 
           {/* Back Side */}
-          <div className="absolute inset-0 backface-hidden rotate-y-180 bg-gray-900 rounded-xl overflow-hidden shadow-xl flex flex-col">
+          <div
+            className="absolute inset-0 bg-gray-900 rounded-xl overflow-hidden shadow-xl flex flex-col"
+            style={{
+              backfaceVisibility: "hidden",
+              transform: "rotateY(180deg)"
+            }}
+          >
             <div className="relative h-64">
               <Image
                 src={profile.backImage}
                 alt={`${profile.name} back`}
-                layout="fill"
-                objectFit="cover"
+                fill
+                style={{ objectFit: "cover" }}
                 className="rounded-t-xl"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
@@ -78,18 +94,28 @@ export default function ProfileCard() {
                   {profile.name}, {profile.age}
                 </h2>
                 <p className="text-gray-300 text-sm mb-4">{profile.bio}</p>
-                <p className="text-gray-400 text-sm mb-2">
-                  To secure a booking, contact management below:
-                </p>
-                <ul className="text-sm text-white space-y-1">
+                <ul className="text-sm text-white space-y-1 mb-4">
                   <li>
-                    <a href={profile.telegram} target="_blank" className="underline hover:text-purple-400">
+                    <a href={profile.telegram} target="_blank" rel="noopener noreferrer" className="underline hover:text-purple-400">
                       Telegram
                     </a>
                   </li>
                   <li>
-                    <a href={profile.whatsapp} target="_blank" className="underline hover:text-green-400">
+                    <a href={profile.whatsapp} target="_blank" rel="noopener noreferrer" className="underline hover:text-green-400">
                       WhatsApp
+                    </a>
+                  </li>
+                  <li>
+                    <a href={profile.Kik} target="_blank" rel="noopener noreferrer" className="underline hover:text-green-400">
+                      KIK
+                    </a>
+                  </li>
+                </ul>
+                <h3 className="text-purple-400 mb-1">Management</h3>
+                <ul className="text-sm text-white space-y-1">
+                  <li>
+                    <a href={profile.mngttelegram} target="_blank" rel="noopener noreferrer" className="underline hover:text-purple-400">
+                      Telegram
                     </a>
                   </li>
                   <li>

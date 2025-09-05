@@ -8,8 +8,10 @@ export default function Home() {
   const router = useRouter();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-  const pages = [{ name: "Profiles", path: "/Profiles" }];
-
+const pages = [
+  { name: "Profiles", path: "/Profiles" },
+  { name: "CC-Mngt", path: "/Mngt" }
+];
   const testimonials = [
     {
       name: "Alex M.",
@@ -32,12 +34,12 @@ export default function Home() {
 {/* Logo/User */}
 <div className="flex items-center space-x-4">
   <img
-    src="images/logo2.jpg" // Replace with your logo file path (e.g., /logo.png)
+    src="images/logo1.jpg" // Replace with your logo file path (e.g., /logo.png)
     alt="Casual Crave Logo"
     className="w-12 h-12 rounded-full cursor-pointer"
   />
   <span className="text-lg font-semibold text-white hidden sm:inline">
-    vivi-casualcrave@au.com
+
   </span>
 </div>
           {/* Desktop Menu */}
