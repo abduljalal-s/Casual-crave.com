@@ -11,7 +11,7 @@ export default function ProfileCard() {
     age: 22,
     bio: "Loves coffee, sunsets, and spontaneous adventures!",
     frontImage: "/images/lexxie2.jpg",
-    backImage: "/images/lexxie.jpg",
+    backImage: "/images/lexxie3.png",
     telegram: "https://t.me/casualviv",
     mngttelegram: "https://t.me/JamesGonzalez_CC",
     whatsapp: "https://wa.me/+61485978227",

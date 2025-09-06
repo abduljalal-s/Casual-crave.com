@@ -15,7 +15,7 @@ export default function ProfilePage() {
           <h3 className="text-xl sm:text-2xl font-bold text-white">
             CasualCrave.com
           </h3>
-
+          
           {/* Desktop Nav */}
           <nav className="space-x-4 hidden sm:flex">
             <a href="/" className="hover:text-purple-400 transition">

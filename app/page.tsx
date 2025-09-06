@@ -10,7 +10,7 @@ export default function Home() {
 
 const pages = [
   { name: "Profiles", path: "/Profiles" },
-  { name: "CC-Mngt", path: "/Mngt" }
+  { name: "Be with Casualcrave", path: "/Mngt" }
 ];
   const testimonials = [
     {
@@ -22,7 +22,7 @@ const pages = [
     { name: "James T.", rating: 4, text: "Quality matches with verification." },
     { name: "Emily L.", rating: 5, text: "Great for casual or lasting bonds." },
   ];
-
+  
   const toggleMobileMenu = () => setIsMobileMenuOpen(!isMobileMenuOpen);
 
   return (
